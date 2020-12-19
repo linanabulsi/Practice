@@ -1,3 +1,4 @@
+import {createSoundButton} from './sound-button.js'
 const root = document.querySelector('#root');
 console.log(root);
 console.log(root.childNodes);
@@ -19,29 +20,15 @@ let parent = document.createElement("div");
 parent.classList.add('keys');
 root.append(parent);
 
-soundsArray.forEach(sound => {
-    let div = document.createElement('div');
-    div.dataset.key = sound.key;
-    div.classList.add('key');
-    parent.append(div);
-
-    let kbd = document.createElement('kbd');
-    kbd.textContent = sound.letter;
-    div.append(kbd);
-
-    let soundName = document.createElement('span');
-    soundName.className = 'sound';
-    soundName.textContent = sound.sound;
-    div.append(soundName);
+const soundBtns = soundsArray.map(sound => {
+    return createSoundButton(sound);
+    
 });
 
+parent.append(...soundBtns.map(el=>el.soundButton));
+root.append(...soundBtns.map(el=>el.audio));
 
-soundsArray.forEach(sound => {
-    let audio = document.createElement('audio');
-    audio.dataset.key = sound.key;
-    audio.src = `sounds/${sound.sound}.wav`;
-    root.append(audio);
-});
+
 
 
 function playSound(e){
