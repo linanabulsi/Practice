@@ -14,7 +14,7 @@
         <h2>LOCAL TAPAS</h2>
         <p></p>
         <ul class="plates">
-            <li> Loading Tapas...</li>
+            <li>Loading Tapas...</li>
         </ul>
         <form class="add-items">
             <input type="text" name="item" placeholder="Item Name" required>
@@ -54,7 +54,7 @@
         }
 
         function toggleDone(e) {
-            if(!e.target.matches('input')) return;
+            if (!e.target.matches('input')) return;
             const el = e.target;
             const index = el.dataset.index;
             items[index].done = !items[index].done;
@@ -66,7 +66,6 @@
         itemsList.addEventListener('click', toggleDone);
 
         populateList(items, itemsList);
-
 
     </script>
 
